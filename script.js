@@ -35,6 +35,8 @@ const questions = [
 let currentQuestion = 0;
 let score = 0;
 let answered = false;
+let timeLeft = 30;
+let timerInterval;
 
 const questionElement = document.getElementById("question");
 const optionsElement = document.getElementById("options");
@@ -45,6 +47,22 @@ const nextButton = document.getElementById("next-btn");
 const progressBar = document.getElementById("progress-bar");
 
 function loadQuestion() {
+    clearInterval(timerInterval);
+timeLeft = 30;
+document.getElementById("timer").textContent = "Time: 30s";
+
+timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById("timer").textContent =
+        `Time: ${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        if (!answered) {
+            checkAnswer("", null);
+        }
+    }
+}, 1000);
     answered = false;
 
     const q = questions[currentQuestion];
@@ -77,6 +95,8 @@ function checkAnswer(selected, selectedButton) {
     if (answered) return;
 
     answered = true;
+    clearInterval(timerInterval);
+
 
     const correctAnswer = questions[currentQuestion].answer;
     const buttons = document.querySelectorAll(".option");
@@ -93,7 +113,9 @@ function checkAnswer(selected, selectedButton) {
         score++;
         feedbackElement.textContent = "Correct answer! Well done!";
     } else {
-        selectedButton.classList.add("wrong");
+        if (selectedButton) {
+    selectedButton.classList.add("wrong");
+}
         feedbackElement.textContent =
             `Incorrect! Correct answer: ${correctAnswer}`;
     }
@@ -136,3 +158,4 @@ document.getElementById("restart-btn").addEventListener("click", () => {
 });
 
 loadQuestion();
+
