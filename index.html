@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster | Impact Makers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>QuizMaster</h1>
+            <p>Test your knowledge. Challenge yourself.</p>
+        </header>
+
+        <section class="quiz-card" id="quiz-card">
+            <div class="top-info">
+                <span id="question-count">Question 1/5</span>
+                <span id="score">Score: 0</span>
+            </div>
+
+            <div class="progress">
+                <div id="progress-bar"></div>
+            </div>
+
+            <h2 id="question">Loading question...</h2>
+
+            <div id="options" class="options"></div>
+
+            <p id="feedback"></p>
+
+            <button id="next-btn" disabled>Next Question →</button>
+        </section>
+
+        <section class="result-card hidden" id="result-card">
+            <h2>Quiz Completed!</h2>
+            <p>Your final score:</p>
+            <h1 id="final-score">0/5</h1>
+            <p id="result-message"></p>
+            <button id="restart-btn">Play Again</button>
+        </section>
+
+        <footer>
+            Built by Team 6 – Impact Makers
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
